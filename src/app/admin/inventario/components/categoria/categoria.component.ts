@@ -1,14 +1,14 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CategoriaService } from '../../services/categoria.service';
 import { FormGroup, FormControl } from '@angular/forms';
-import  Swal  from 'sweetalert2';
-import { error } from 'console';
+import Swal from 'sweetalert2';
 
 interface Categoria {
   id: number,
-  nombreCategoria: string;
+  nombre: string, // Cambié de 'nombreCategoria' a 'nombre'
   detalle: string
 }
+
 @Component({
   selector: 'app-categoria',
   templateUrl: './categoria.component.html',
@@ -16,19 +16,18 @@ interface Categoria {
 })
 export class CategoriaComponent implements OnInit {
 
-  private categoriaService = inject(CategoriaService)
+  private categoriaService = inject(CategoriaService);
 
-  categorias: Categoria[] = []
+  categorias: Categoria[] = [];
   dialog_visible: boolean = false;
   categoria_id: number = -1;
   categoriaForm = new FormGroup({
-    nombreCategoria: new FormControl(''),
+    nombre: new FormControl(''), // Cambié de 'nombreCategoria' a 'nombre'
     detalle: new FormControl('')
   });
 
-
   ngOnInit(): void {
-    this.getCategorias()
+    this.getCategorias();
   }
 
   getCategorias() {
@@ -39,11 +38,11 @@ export class CategoriaComponent implements OnInit {
       (error: any) => {
         console.log(error);
       }
-    )
+    );
   }
 
   mostrarDialog() {
-    this.dialog_visible = true
+    this.dialog_visible = true;
   }
 
   guardarCategoria() {
@@ -51,7 +50,7 @@ export class CategoriaComponent implements OnInit {
       this.alerta("CAMPOS VACÍOS", "Por favor, completa todos los campos requeridos.", "error");
       return;
     }
-  
+
     if (this.categoria_id > 0) {
       this.categoriaService.funModificar(this.categoria_id, this.categoriaForm.value).subscribe(
         (res: any) => {
@@ -79,14 +78,15 @@ export class CategoriaComponent implements OnInit {
     this.categoriaForm.reset();
   }
 
- editarCategoria(cat: Categoria) {
-  this.dialog_visible = true;
-  this.categoria_id = cat.id;
-  this.categoriaForm.setValue({
-    nombreCategoria: cat.nombreCategoria,
-    detalle: cat.detalle,
-  });
-}
+  editarCategoria(cat: Categoria) {
+    this.dialog_visible = true;
+    this.categoria_id = cat.id;
+    this.categoriaForm.setValue({
+      nombre: cat.nombre, // Cambié de 'nombreCategoria' a 'nombre'
+      detalle: cat.detalle,
+    });
+  }
+
   eliminarCategoria(cat: Categoria) {
     Swal.fire({
       title: "¿Está seguro de eliminar la categoría?",
@@ -100,16 +100,15 @@ export class CategoriaComponent implements OnInit {
       if (result.isConfirmed) {
         this.categoriaService.funEliminar(cat.id).subscribe(
           (res: any) => {
-            this.alerta("ELIMINADO!", "Categoría eliminada.", "success")
-
+            this.alerta("ELIMINADO!", "Categoría eliminada.", "success");
             this.getCategorias();
-            this.categoria_id = -1
+            this.categoria_id = -1;
           },
           (error: any) => {
-            this.alerta("ERROR!", "Error al intentar eliminar.", "error")
+            this.alerta("ERROR!", "Error al intentar eliminar.", "error");
           }
-        )
-        this.categoriaForm.reset()
+        );
+        this.categoriaForm.reset();
       }
     });
   }
