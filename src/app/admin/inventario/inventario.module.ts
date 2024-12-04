@@ -6,9 +6,10 @@ import { CategoriaService } from './services/categoria.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
-import { ButtonModule } from 'primeng/button';
+//import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PrimengModule } from '../../primeng/primeng.module';
 
 
 
@@ -22,9 +23,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     TableModule,
     DialogModule,
-    ButtonModule,
+    //ButtonModule,
     InputTextModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PrimengModule
   ]
 })
 export class InventarioModule { }
