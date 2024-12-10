@@ -1,14 +1,16 @@
-import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
 import { routes } from './app.routes';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ɵBrowserAnimationBuilder } from '@angular/animations';
 
 export const appConfig: ApplicationConfig = {
-  //providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration()]
-  providers: [provideRouter(routes), provideHttpClient(withFetch()), provideClientHydration(), importProvidersFrom(BrowserModule), importProvidersFrom(BrowserAnimationsModule)]
-  //validar si se debe importar provideClientHydration
+  providers: [
+    provideRouter(routes),                       // Proveedor de rutas
+    provideHttpClient(withFetch()),              // Proveedor de HTTP con soporte para Fetch API
+    provideClientHydration(),                    // Soporte para Hydration (SSR)
+    importProvidersFrom(BrowserModule),          // Importa el módulo principal del navegador
+    importProvidersFrom(BrowserAnimationsModule) // Importa el módulo de animaciones del navegador
+  ]
 };

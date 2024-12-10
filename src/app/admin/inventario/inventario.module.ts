@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 //import { DialogModule } from 'primeng/dialog';
 //import { ButtonModule } from 'primeng/button';
 //import { InputTextModule } from 'primeng/inputtext';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms'; // <-- Agregar FormsModule aquí
 import { PrimengModule } from '../../primeng/primeng.module';
 //import {Toolbar} from 'primeng/toolbar'
 
@@ -28,7 +28,8 @@ import { PrimengModule } from '../../primeng/primeng.module';
     //InputTextModule,
     ReactiveFormsModule,
     //ToolBarModule,
-    PrimengModule
+    PrimengModule,
+    FormsModule
   ]
 })
 export class InventarioModule { }

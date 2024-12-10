@@ -1,12 +1,12 @@
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { NgModule } from '@angular/core';
-import { ProductoComponent } from '../admin/inventario/components/producto/producto.component';
+import { PerfilComponent } from '../admin/components/perfil/perfil.component'; // Cambia esto si 'home' usa otro componente
 
 const routes: Routes = [
   {
-    path: "",
+    path: '',
     redirectTo: 'login',
     pathMatch: 'full'
   },
@@ -19,13 +19,12 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
-    path: '**',
-    redirectTo: 'login'
-  }
-  ,
+    path: 'home',
+    component: PerfilComponent // Usa el componente adecuado para 'home'
+  },
   {
-    path: 'admin/producto',
-    component: ProductoComponent,
+    path: '**',
+    redirectTo: 'login' // Redirección por defecto
   }
 ];
 

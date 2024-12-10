@@ -1,0 +1,12 @@
+<div class="flex flex-column align-items-center justify-content-center">
+    <h2 class="text-center">Recuperar Contraseña</h2>
+    <form [formGroup]="requestResetForm">
+      <label for="email">Correo Electrónico</label>
+      <input id="email" type="email" formControlName="email" placeholder="Ingrese su correo" class="w-full mb-3" />
+      <div *ngIf="requestResetForm.get('email')?.invalid && requestResetForm.get('email')?.touched" class="text-red-500">
+        Ingresa un correo válido.
+      </div>
+      <button pButton label="Solicitar Enlace" (click)="onSubmit()" [disabled]="!requestResetForm.valid"></button>
+    </form>
+  </div>
+  

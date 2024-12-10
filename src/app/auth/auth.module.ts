@@ -10,12 +10,14 @@ import { AuthService } from './services/auth.service';
 //import { ButtonModule } from 'primeng/button';
 //import {PasswordModule} from 'primeng/password'
 import { PrimengModule } from '../primeng/primeng.module';
+import { MessageService } from 'primeng/api';  // Asegúrate de importar MessageService
 
 
 @NgModule({
 
   providers:[
-    AuthService
+    AuthService,
+    MessageService
   ],
   declarations: [
     LoginComponent,
